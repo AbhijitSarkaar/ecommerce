@@ -2,7 +2,7 @@ export const products = [
     {
         _id: 1,
         name: "Product 1",
-        image: "../images/one.jpg",
+        image: "/images/third.jpg",
         description: "product one description",
         brand: "Apple",
         category: "Electronics",
@@ -14,7 +14,7 @@ export const products = [
     {
         _id: 2,
         name: "Product 2",
-        image: "../images/product-2.jpg",
+        image: "/images/third.jpg",
         description: "product two description",
         brand: "Microsoft",
         category: "Electronics",
@@ -26,7 +26,7 @@ export const products = [
     {
         _id: 3,
         name: "Product 3",
-        image: "../images/product-3.jpg",
+        image: "/images/third.jpg",
         description: "product three description",
         brand: "Google",
         category: "Electronics",
@@ -37,8 +37,8 @@ export const products = [
     },
     {
         _id: 4,
-        name: "Product 1",
-        image: "../images/product-4.jpg",
+        name: "Product 4",
+        image: "/images/third.jpg",
         description: "product Four description",
         brand: "Apple",
         category: "Electronics",
@@ -50,7 +50,7 @@ export const products = [
     {
         _id: 5,
         name: "Product 5",
-        image: "../images/product-2.jpg",
+        image: "/images/third.jpg",
         description: "product five description",
         brand: "Microsoft",
         category: "Electronics",
@@ -62,7 +62,7 @@ export const products = [
     {
         _id: 6,
         name: "Product 6",
-        image: "../images/product-3.jpg",
+        image: "/images/third.jpg",
         description: "product six description",
         brand: "Google",
         category: "Electronics",
