@@ -1,8 +1,18 @@
 import React from "react";
-import { Navbar, Nav, Container } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { logout } from "../actions/userActions";
 
 const Header = () => {
+    const dispatch = useDispatch();
+    const userLogin = useSelector((state) => state.userLogin);
+    const { userInfo } = userLogin;
+
+    const logoutHandler = () => {
+        dispatch(logout());
+    };
+
     return (
         <header>
             <Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>
@@ -11,8 +21,11 @@ const Header = () => {
                         <Navbar.Brand>ProShop</Navbar.Brand>
                     </Link>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="ml-auto">
+                    <Navbar.Collapse
+                        id="basic-navbar-nav"
+                        style={{ alignItems: "center !important" }}
+                    >
+                        <Nav style={{ alignItems: "center !important" }}>
                             <Link to={"/cart"}>
                                 <div
                                     style={{
@@ -23,16 +36,42 @@ const Header = () => {
                                     Cart
                                 </div>
                             </Link>
-                            <Link to={"/login"}>
-                                <div
-                                    style={{
-                                        color: "white",
-                                        marginLeft: "20px",
-                                    }}
-                                >
-                                    Sign In
-                                </div>
-                            </Link>
+                            {userInfo ? (
+                                <>
+                                    <div
+                                        style={{
+                                            color: "white",
+                                            marginLeft: "20px",
+                                            cursor: "pointer",
+                                        }}
+                                        onClick={logoutHandler}
+                                    >
+                                        logout
+                                    </div>
+                                    <Link to={"/profile"}>
+                                        <div
+                                            style={{
+                                                color: "white",
+                                                marginLeft: "900px",
+                                                width: "300px",
+                                            }}
+                                        >
+                                            {userInfo.name}
+                                        </div>
+                                    </Link>
+                                </>
+                            ) : (
+                                <Link to={"/login"}>
+                                    <div
+                                        style={{
+                                            color: "white",
+                                            marginLeft: "20px",
+                                        }}
+                                    >
+                                        Sign In
+                                    </div>
+                                </Link>
+                            )}
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
