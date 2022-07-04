@@ -30,7 +30,7 @@ export default function ProfileScreen({ location, history }) {
         if (!userInfo) {
             history.push("/login"); //checks the updated user info from redux, if info is possible it redirects to homepage
         } else {
-            if (!user.name) {
+            if (!user?.name) {
                 dispatch(getUserDetails("profile"));
             } else {
                 setName(user.name);
