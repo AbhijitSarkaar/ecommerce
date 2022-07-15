@@ -4,7 +4,7 @@ import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { logout } from "../actions/userActions";
 
-const Header = () => {
+const Header = ({ history }) => {
     const dispatch = useDispatch();
     const userLogin = useSelector((state) => state.userLogin);
     const { userInfo } = userLogin;
@@ -36,6 +36,19 @@ const Header = () => {
                                     Cart
                                 </div>
                             </Link>
+                            {userInfo?.isAdmin && (
+                                <Link to={"/admin/userlist"}>
+                                    <div
+                                        style={{
+                                            color: "white",
+                                            marginLeft: "20px",
+                                            cursor: "pointer",
+                                        }}
+                                    >
+                                        Users
+                                    </div>
+                                </Link>
+                            )}
                             {userInfo ? (
                                 <>
                                     <div
