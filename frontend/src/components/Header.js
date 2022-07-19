@@ -49,6 +49,19 @@ const Header = ({ history }) => {
                                     </div>
                                 </Link>
                             )}
+                            {userInfo?.isAdmin && (
+                                <Link to={"/admin/productlist"}>
+                                    <div
+                                        style={{
+                                            color: "white",
+                                            marginLeft: "20px",
+                                            cursor: "pointer",
+                                        }}
+                                    >
+                                        Products
+                                    </div>
+                                </Link>
+                            )}
                             {userInfo ? (
                                 <>
                                     <div
