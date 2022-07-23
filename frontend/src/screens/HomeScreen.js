@@ -6,6 +6,7 @@ import { listProducts } from "../actions/productActions";
 import Message from "../components/Message";
 import Loader from "../components/Loader";
 import Paginate from "../components/Paginate";
+import { Helmet } from "react-helmet";
 
 const HomeScreen = ({ match }) => {
     const { keyword } = match.params;
@@ -19,6 +20,9 @@ const HomeScreen = ({ match }) => {
     }, [dispatch, keyword, pageNumber]);
     return (
         <>
+            <Helmet>
+                <title>Welcome to proshop homepage</title>
+            </Helmet>
             <h1>Latest Products</h1>
             {loading ? (
                 <Loader></Loader>
