@@ -67,6 +67,16 @@ function App() {
                         path="/admin/orderlist"
                         component={OrderListScreen}
                     />
+                    <Route
+                        path="/page/:pageNumber"
+                        component={HomeScreen}
+                        exact
+                    />
+                    <Route
+                        path="/search/:keyword/page/:pageNumber"
+                        component={HomeScreen}
+                        exact
+                    />
                     <Route exact path="/" component={HomeScreen} />
                 </Container>
             </main>
