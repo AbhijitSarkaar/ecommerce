@@ -7,6 +7,7 @@ import Loader from "../components/Loader";
 import FormContainer from "../components/FormContainer";
 import { listProductDetails, updateProduct } from "../actions/productActions";
 import { PRODUCT_UPDATE_RESET } from "../constants/productConstants";
+import axios from "axios";
 
 export default function ProductEditScreen({ match, history }) {
     const productId = match.params.id;
@@ -18,6 +19,7 @@ export default function ProductEditScreen({ match, history }) {
     const [category, setCategory] = useState("");
     const [countInStock, setCountInStock] = useState(0);
     const [description, setDescription] = useState("");
+    const [uploading, setUploading] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -67,6 +69,26 @@ export default function ProductEditScreen({ match, history }) {
         );
     };
 
+    const uploadFileHandler = async (e) => {
+        const file = e.target.files[0];
+        const formData = new FormData();
+        formData.append("image", file);
+        setUploading(true);
+        try {
+            const config = {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            };
+            const { data } = await axios.post("/api/upload", formData, config);
+            setImage(data);
+            setUploading(false);
+        } catch (err) {
+            console.error(err);
+            setUploading(false);
+        }
+    };
+
     return (
         <>
             <Link to="/admin/productlist">
@@ -110,6 +132,8 @@ export default function ProductEditScreen({ match, history }) {
                                 value={image}
                                 onChange={(e) => setPrice(e.target.value)}
                             ></Form.Control>
+                            <input type={"file"} onChange={uploadFileHandler} />
+                            {uploading && <Loader />}
                         </Form.Group>
 
                         <Form.Group controlId="brand">
