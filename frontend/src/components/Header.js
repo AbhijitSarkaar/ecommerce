@@ -1,8 +1,10 @@
 import React from "react";
+import { Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Navbar, Nav, Container, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { logout } from "../actions/userActions";
+import SearchBox from "./SearchBox";
 
 const Header = ({ history }) => {
     const dispatch = useDispatch();
@@ -21,10 +23,16 @@ const Header = ({ history }) => {
                         <Navbar.Brand>ProShop</Navbar.Brand>
                     </Link>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
                     <Navbar.Collapse
                         id="basic-navbar-nav"
                         style={{ alignItems: "center !important" }}
                     >
+                        <Route
+                            render={({ history }) => (
+                                <SearchBox history={history} />
+                            )}
+                        ></Route>
                         <Nav style={{ alignItems: "center !important" }}>
                             <Link to={"/cart"}>
                                 <div
